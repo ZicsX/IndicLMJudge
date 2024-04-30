@@ -128,7 +128,7 @@ def eval_hf_model(args, model, tokenizer, prompts):
 
 def main(args):
 
-    ds = load_dataset("manishiitg/llm_judge", split="train")
+    ds = load_dataset("makers-lab/llm_judge", split="train")
     final_data = []
     for row in ds:
         final_data.append(row)
@@ -153,7 +153,7 @@ def main(args):
         tensor_parallel_size=torch.cuda.device_count(),
         # max_num_batched_tokens=4096,
         quantization="AWQ",
-        max_model_len=4096*2,
+        max_model_len=1024,
         dtype="float16",
         gpu_memory_utilization=.8
 
@@ -222,7 +222,7 @@ def main(args):
 
     final_data = pending_data + completed_data
     dataset = process_and_update_dataset(final_data)
-    dataset.push_to_hub("manishiitg/llm_judge", private=False)
+    dataset.push_to_hub("makers-lab/llm_judge", private=False)
 
 
 def process_and_update_dataset(new_data):
@@ -238,7 +238,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--push_output",
         type=str,
-        default="manishiitg/llm_judge",
+        default="makers-lab/llm_judge",
         help="If given, we will use the vllm library, which will likely increase the inference throughput."
     )
     args = parser.parse_args()

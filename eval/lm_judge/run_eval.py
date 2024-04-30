@@ -275,7 +275,7 @@ if __name__ == "__main__":
         help="if specified, we will load the tokenizer from here.",
     )
     parser.add_argument(
-        "--max_context_length", type=int, default=3750, help="maximum number of tokens in the context passage."
+        "--max_context_length", type=int, default=1024, help="maximum number of tokens in the context passage."
     )
     parser.add_argument("--eval_batch_size", type=int,
                         default=1, help="batch size for evaluation.")
@@ -300,7 +300,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--push_output",
         type=str,
-        default="manishiitg/llm_judge",
+        default="makers-lab/llm_judge",
         help="If given, we will use the vllm library, which will likely increase the inference throughput."
     )
     args = parser.parse_args()

@@ -6,7 +6,7 @@ from datasets import load_dataset
 
 def generateLMJudge():
 
-    ds = load_dataset("manishiitg/llm_judge", split="train")
+    ds = load_dataset("makers-lab/llm_judge", split="train")
 
     def is_hindi(char):
         try:
